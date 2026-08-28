@@ -112,4 +112,23 @@ void main() {
     final context = tester.element(find.byType(Scaffold));
     expect(Theme.of(context).brightness, Brightness.dark);
   });
+
+  testWidgets('Arabic layout supports dark theme on small phone', (
+    tester,
+  ) async {
+    final repository = FakeOpsRepository();
+    await pumpOps(
+      tester,
+      const GuardianQueueScreen(),
+      locale: const Locale('ar'),
+      themeMode: ThemeMode.dark,
+      size: const Size(320, 568),
+      overrides: [opsRepositoryProvider.overrideWithValue(repository)],
+    );
+
+    final context = tester.element(find.byType(Scaffold));
+    expect(Directionality.of(context), TextDirection.rtl);
+    expect(Theme.of(context).brightness, Brightness.dark);
+    expect(tester.takeException(), isNull);
+  });
 }
