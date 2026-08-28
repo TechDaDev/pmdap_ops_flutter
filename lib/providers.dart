@@ -23,8 +23,9 @@ final sessionProvider = StateNotifierProvider<SessionController, SessionState>((
     repository: ref.watch(opsRepositoryProvider),
     tokenStore: ref.watch(tokenStoreProvider),
   );
-  ref.read(apiClientProvider).onUnauthorized = controller.expire;
-  ref.onDispose(() => ref.read(apiClientProvider).onUnauthorized = null);
+  final apiClient = ref.read(apiClientProvider);
+  apiClient.onUnauthorized = controller.expire;
+  ref.onDispose(() => apiClient.onUnauthorized = null);
   return controller;
 });
 
