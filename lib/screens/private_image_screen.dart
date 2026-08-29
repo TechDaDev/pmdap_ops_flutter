@@ -86,8 +86,17 @@ class _PrivateImageScreenState extends ConsumerState<PrivateImageScreen> {
       actions: [
         SegmentedButton<String>(
           segments: [
-            ButtonSegment(value: 'front', label: Text(context.l10n.front)),
-            ButtonSegment(value: 'back', label: Text(context.l10n.back)),
+            ButtonSegment(
+              value: 'front',
+              label: Text(
+                context.l10n.front,
+                key: const Key('image_side_front'),
+              ),
+            ),
+            ButtonSegment(
+              value: 'back',
+              label: Text(context.l10n.back, key: const Key('image_side_back')),
+            ),
           ],
           selected: {_side},
           onSelectionChanged: (value) {
@@ -113,6 +122,7 @@ class _PrivateImageScreenState extends ConsumerState<PrivateImageScreen> {
               boundaryMargin: const EdgeInsets.all(80),
               child: Center(
                 child: Image(
+                  key: Key('private_image_$_side'),
                   image: _provider!,
                   fit: BoxFit.contain,
                   gaplessPlayback: false,

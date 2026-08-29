@@ -92,10 +92,12 @@ Future<bool> confirmAction(
         content: Text(message),
         actions: [
           TextButton(
+            key: const Key('cancel_action'),
             onPressed: () => Navigator.pop(context, false),
             child: Text(context.l10n.cancel),
           ),
           FilledButton(
+            key: const Key('confirm_action'),
             onPressed: () => Navigator.pop(context, true),
             child: Text(confirmLabel),
           ),
@@ -111,6 +113,7 @@ Future<String?> requestReason(BuildContext context, String title) async {
     builder: (context) => AlertDialog(
       title: Text(title),
       content: TextField(
+        key: const Key('rejection_reason'),
         autofocus: true,
         onChanged: (value) => reason = value,
         maxLength: 1000,
@@ -120,10 +123,12 @@ Future<String?> requestReason(BuildContext context, String title) async {
       ),
       actions: [
         TextButton(
+          key: const Key('cancel_rejection'),
           onPressed: () => Navigator.pop(context),
           child: Text(context.l10n.cancel),
         ),
         FilledButton(
+          key: const Key('confirm_rejection'),
           onPressed: () {
             final value = reason.trim();
             if (value.isNotEmpty) Navigator.pop(context, value);

@@ -12,6 +12,7 @@ class GuardianQueueScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final queue = ref.watch(guardianQueueProvider);
     return Scaffold(
+      key: const Key('guardian_queue_screen'),
       appBar: AppBar(title: Text(context.l10n.guardianRelationships)),
       body: queue.when(
         loading: () => const Center(child: CircularProgressIndicator()),

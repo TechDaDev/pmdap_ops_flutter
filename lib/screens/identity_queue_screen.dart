@@ -12,6 +12,7 @@ class IdentityQueueScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final queue = ref.watch(identityQueueProvider);
     return Scaffold(
+      key: const Key('identity_queue_screen'),
       appBar: AppBar(title: Text(context.l10n.identityVerification)),
       body: queue.when(
         loading: () => const Center(child: CircularProgressIndicator()),
