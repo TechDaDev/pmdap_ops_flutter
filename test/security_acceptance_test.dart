@@ -38,4 +38,12 @@ void main() {
     expect(manifest, isNot(contains('WRITE_EXTERNAL_STORAGE')));
     expect(manifest, isNot(contains('MANAGE_EXTERNAL_STORAGE')));
   });
+
+  test('release manifest permits backend network access', () {
+    final manifest = File(
+      'android/app/src/main/AndroidManifest.xml',
+    ).readAsStringSync();
+
+    expect(manifest, contains('android.permission.INTERNET'));
+  });
 }
